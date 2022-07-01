@@ -2,8 +2,9 @@
 /** @jsxFrag Fragment */
 import { h, Fragment } from "preact";
 import { Head } from "$fresh/runtime.ts";
-import Container from "../components/Container.tsx";
 import { tw } from "@twind";
+import Container from "../components/Container.tsx";
+import Navigation from "../components/Navigation.tsx";
 
 const TITLE = "Mohammad ali Ali panah";
 const DESCRIPTION = "Mohammad ali Ali panah - Front-end lead at Zoomit";
@@ -15,9 +16,14 @@ export default function Home() {
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
       </Head>
-      <Container>
-        <Me />
-      </Container>
+      <main
+        class={tw`flex flex-col justify-center px-8 bg-gray-50 dark:bg-gray-900`}
+      >
+        <Container>
+          <Navigation active="" />
+          <Me />
+        </Container>
+      </main>
     </>
   );
 }
