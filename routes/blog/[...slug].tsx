@@ -9,8 +9,16 @@ import Navigation from "../../components/Navigation.tsx";
 import { frontMatter, gfm } from "../../utils/markdown.ts";
 
 interface Data {
+  content: FrontMatter["content"];
+  page: FrontMatter["data"];
+}
+
+interface FrontMatter {
   content: string;
-  data: Record<string, unknown>;
+  data: {
+    title: string;
+    desc: string;
+  };
 }
 
 const BLOGS = "../../content/blog";
@@ -35,23 +43,20 @@ export const handler: Handlers<Data> = {
 
     const url = new URL(`${BLOGS}/${filename}`, import.meta.url);
     const fileContent = await Deno.readTextFile(url);
-    const { content, data } = frontMatter(fileContent) as Data;
+    const { content, data } = frontMatter(fileContent) as FrontMatter;
 
-    const res = await ctx.render({ content, data });
+    const res = await ctx.render({ content, page: data });
     res.headers.set("Cache-Control", `max-age=${60 * 5}`);
     return res;
   },
 };
 
-const TITLE = "Mohammad ali Ali panah";
-const DESCRIPTION = "Mohammad ali Ali panah - Front-end lead at Zoomit";
-
 export default function Blog(props: PageProps<Data>) {
   return (
     <>
       <Head>
-        <title>{TITLE}</title>
-        <meta name="description" content={DESCRIPTION} />
+        <title>{props.data.page.title}</title>
+        <meta name="description" content={props.data.page.desc} />
       </Head>
       <Container>
         <Navigation active="" />
