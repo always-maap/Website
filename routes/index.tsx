@@ -10,7 +10,7 @@ import { PageProps } from "$fresh/server.ts";
 const TITLE = "Mohammad ali Ali panah";
 const DESCRIPTION = "Mohammad ali Ali panah - Front-end lead at Zoomit";
 
-export default function Home(props: PageProps) {
+export default function Home() {
   return (
     <>
       <Head>
@@ -21,7 +21,7 @@ export default function Home(props: PageProps) {
         class={tw`flex flex-col justify-center px-8 bg-gray-50 dark:bg-gray-900`}
       >
         <Container>
-          <Navigation active={props.route} />
+          <Navigation active="/" />
           <Me />
         </Container>
       </main>

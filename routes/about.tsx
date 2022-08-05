@@ -18,7 +18,7 @@ export default function About(props: PageProps) {
         <meta name="description" content={DESCRIPTION} />
       </Head>
       <Container>
-        <Navigation active={props.route} />
+        <Navigation active="/about" />
       </Container>
     </>
   );

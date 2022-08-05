@@ -5,14 +5,13 @@ import ThemeButton from "../islands/ThemeButton.tsx";
 import cn from "classnames";
 
 const items = [
-  { name: "Home", url: "/", routes: ["/"] },
-  { name: "Blog", url: "/blog", routes: ["/blog", "/blog/:slug*"] },
+  { name: "Home", url: "/" },
+  { name: "Blog", url: "/blog" },
   {
     name: "Snippets",
     url: "/snippets",
-    routes: ["/snippets", "/snippets/:slug*"],
   },
-  { name: "About", url: "/about", routes: ["/about"] },
+  { name: "About", url: "/about" },
 ];
 
 type Props = {
@@ -20,8 +19,8 @@ type Props = {
 };
 
 export default function Navigation(props: Props) {
-  function isActive(routes: string[]) {
-    return routes.findIndex((route) => route === props.active) !== -1;
+  function isActive(url: string) {
+    return props.active === url;
   }
 
   return (
@@ -33,7 +32,7 @@ export default function Navigation(props: Props) {
           <a
             href={item.url}
             class={cn(
-              isActive(item.routes)
+              isActive(item.url)
                 ? tw`font-semibold text-gray-800 dark:text-gray-200`
                 : tw`font-normal text-gray-600 dark:text-gray-400`,
               tw`hidden md:inline-block p-1 sm:px-3 sm:py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-all`

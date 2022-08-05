@@ -59,7 +59,7 @@ export default function Blog(props: PageProps<Data>) {
         <meta name="description" content={props.data.page.desc} />
       </Head>
       <Container>
-        <Navigation active={props.route} />
+        <Navigation active="/blog" />
         <div
           dangerouslySetInnerHTML={{ __html: gfm.render(props.data.content) }}
         />
