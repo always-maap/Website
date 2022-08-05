@@ -6,6 +6,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import Container from "../../components/Container.tsx";
 import Navigation from "../../components/Navigation.tsx";
 import { frontMatter, gfm } from "../../utils/markdown.ts";
+import { tw } from "twind";
 
 interface Data {
   content: FrontMatter["content"];
@@ -60,6 +61,7 @@ export default function Blog(props: PageProps<Data>) {
       <Container>
         <Navigation active="/blog" />
         <div
+          class={tw`prose`}
           dangerouslySetInnerHTML={{ __html: gfm.render(props.data.content) }}
         />
       </Container>
