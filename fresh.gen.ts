@@ -4,18 +4,22 @@
 
 import * as $0 from "./routes/_app.tsx";
 import * as $1 from "./routes/about.tsx";
-import * as $2 from "./routes/blog/[...slug].tsx";
-import * as $3 from "./routes/index.tsx";
-import * as $4 from "./routes/snippets.tsx";
+import * as $2 from "./routes/blog.tsx";
+import * as $3 from "./routes/blog/[...slug].tsx";
+import * as $4 from "./routes/index.tsx";
+import * as $5 from "./routes/snippets.tsx";
+import * as $6 from "./routes/snippets/[...slug].tsx";
 import * as $$0 from "./islands/ThemeButton.tsx";
 
 const manifest = {
   routes: {
     "./routes/_app.tsx": $0,
     "./routes/about.tsx": $1,
-    "./routes/blog/[...slug].tsx": $2,
-    "./routes/index.tsx": $3,
-    "./routes/snippets.tsx": $4,
+    "./routes/blog.tsx": $2,
+    "./routes/blog/[...slug].tsx": $3,
+    "./routes/index.tsx": $4,
+    "./routes/snippets.tsx": $5,
+    "./routes/snippets/[...slug].tsx": $6,
   },
   islands: {
     "./islands/ThemeButton.tsx": $$0,

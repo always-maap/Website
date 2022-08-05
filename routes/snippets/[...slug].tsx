@@ -20,13 +20,13 @@ interface FrontMatter {
   };
 }
 
-const BLOGS = "../../content/blog";
+const SNIPPETS = "../../content/snippets";
 
 export const handler: Handlers<Data> = {
   async GET(_req, ctx) {
     const slug = ctx.params.slug;
     const filename = slug + ".md";
-    const blogDir = new URL(BLOGS, import.meta.url);
+    const blogDir = new URL(SNIPPETS, import.meta.url);
 
     let isFound = false;
     for await (const dirEntry of Deno.readDir(blogDir)) {
@@ -40,7 +40,7 @@ export const handler: Handlers<Data> = {
       return new Response("404 page not found", { status: 404 });
     }
 
-    const url = new URL(`${BLOGS}/${filename}`, import.meta.url);
+    const url = new URL(`${SNIPPETS}/${filename}`, import.meta.url);
     const fileContent = await Deno.readTextFile(url);
     const { content, data } = frontMatter(fileContent) as FrontMatter;
 
@@ -50,7 +50,7 @@ export const handler: Handlers<Data> = {
   },
 };
 
-export default function Blog(props: PageProps<Data>) {
+export default function Snippets(props: PageProps<Data>) {
   return (
     <>
       <Head>
@@ -58,7 +58,7 @@ export default function Blog(props: PageProps<Data>) {
         <meta name="description" content={props.data.page.desc} />
       </Head>
       <Container>
-        <Navigation active="/blog" />
+        <Navigation active="/snippets" />
         <div
           dangerouslySetInnerHTML={{ __html: gfm.render(props.data.content) }}
         />
