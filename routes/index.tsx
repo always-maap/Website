@@ -5,11 +5,12 @@ import { Head } from "$fresh/runtime.ts";
 import { tw } from "@twind";
 import Container from "../components/Container.tsx";
 import Navigation from "../components/Navigation.tsx";
+import { PageProps } from "$fresh/server.ts";
 
 const TITLE = "Mohammad ali Ali panah";
 const DESCRIPTION = "Mohammad ali Ali panah - Front-end lead at Zoomit";
 
-export default function Home() {
+export default function Home(props: PageProps) {
   return (
     <>
       <Head>
@@ -20,7 +21,7 @@ export default function Home() {
         class={tw`flex flex-col justify-center px-8 bg-gray-50 dark:bg-gray-900`}
       >
         <Container>
-          <Navigation active="" />
+          <Navigation active={props.route} />
           <Me />
         </Container>
       </main>
