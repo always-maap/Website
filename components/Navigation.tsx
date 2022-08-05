@@ -1,6 +1,7 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
+import ThemeButton from "../islands/ThemeButton.tsx";
 
 const items = [
   { name: "Home", url: "/" },
@@ -28,6 +29,7 @@ export default function Navigation(props: Props) {
           </a>
         ))}
       </div>
+      <ThemeButton />
     </nav>
   );
 }
