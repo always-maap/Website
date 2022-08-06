@@ -17,15 +17,11 @@ export default function Home() {
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
       </Head>
-      <main
-        class={tw`flex flex-col justify-center px-8 bg-gray-50 dark:bg-gray-900`}
-      >
-        <Container>
-          <Navigation active="/" />
-          <Me />
-          <Features features={features.blog} />
-        </Container>
-      </main>
+      <Container>
+        <Navigation active="/" />
+        <Me />
+        <Features features={features.blog} />
+      </Container>
     </>
   );
 }

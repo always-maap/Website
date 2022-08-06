@@ -1,15 +1,13 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { Configuration, setup } from "twind";
-import typographyPlugin from "@twind/typography";
+import typographyPlugin from "./typography.ts";
 
 export * from "twind";
 export const config: Configuration = {
   darkMode: "class",
   mode: "silent",
   plugins: {
-    ...typographyPlugin({
-      className: "prose",
-    }),
+    ...typographyPlugin({ className: "prose" }),
   },
 };
 

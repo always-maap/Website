@@ -46,7 +46,7 @@ export const handler: Handlers<Data> = {
     const { content, data } = frontMatter(fileContent) as FrontMatter;
 
     const res = await ctx.render({ content, page: data });
-    res.headers.set("Cache-Control", `max-age=${60 * 5}`);
+    // res.headers.set("Cache-Control", `max-age=${60 * 5}`);
     return res;
   },
 };
@@ -61,7 +61,7 @@ export default function Blog(props: PageProps<Data>) {
       <Container>
         <Navigation active="/blog" />
         <div
-          class={tw`prose`}
+          class={tw`prose dark:prose-invert prose-blue`}
           dangerouslySetInnerHTML={{ __html: gfm.render(props.data.content) }}
         />
       </Container>

@@ -3,6 +3,8 @@
 import { h, Fragment } from "preact";
 import { AppProps } from "$fresh/src/server/types.ts";
 import { Head } from "$fresh/runtime.ts";
+import Footer from "../components/Footer.tsx";
+import { tw } from "@twind";
 
 const initialTheme = `
 if (
@@ -22,7 +24,12 @@ export default function App({ Component }: AppProps) {
       <Head>
         <script dangerouslySetInnerHTML={{ __html: initialTheme }} />
       </Head>
-      <Component />
+      <main
+        class={tw`flex flex-col justify-center px-8 bg-gray-50 dark:bg-gray-900`}
+      >
+        <Component />
+        <Footer />
+      </main>
     </>
   );
 }
