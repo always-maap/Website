@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
-import { tw } from "@twind";
-import { useEffect, useState } from "preact/hooks";
-import IconButton from "../components/IconButton.tsx";
+import { useEffect, useState } from "react";
+import IconButton from "./IconButton";
 
 export default function ThemeButton() {
   const [isDark, setIsDark] = useState(() =>
@@ -48,7 +45,7 @@ export default function ThemeButton() {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          class={tw`w-5 h-5 text-gray-800 dark:text-gray-200`}
+          className="w-5 h-5 text-gray-800 dark:text-gray-200"
         >
           <path
             stroke-linecap="round"
@@ -63,7 +60,7 @@ export default function ThemeButton() {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          class={tw`w-5 h-5 text-gray-800 dark:text-gray-200`}
+          className="w-5 h-5 text-gray-800 dark:text-gray-200"
         >
           <path
             stroke-linecap="round"
