@@ -72,7 +72,7 @@ export default function Heart() {
         Submit
       </button>
       <div
-        style={{ fontFamily: "'emoji', 'Apple Color Emoji'" }}
+        style={{ fontFamily: "'emoji', 'Apple Color Emoji', monospace" }}
         className="text-black dark:text-white flex justify-center whitespace-pre text-xs"
       >
         {heart}
