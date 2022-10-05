@@ -38,6 +38,12 @@ function createHeart(n: number) {
   return res;
 }
 
+export function meta() {
+  return {
+    title: "Heart",
+  };
+}
+
 export default function Heart() {
   const [heart, setHeart] = useState("");
 
@@ -45,14 +51,13 @@ export default function Heart() {
     const formData = new FormData(e.currentTarget);
     e.preventDefault();
     const count = formData.get("count");
-    console.log(typeof count);
     if (count) {
       setHeart(createHeart(+count));
     }
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-full max-w-xs py-4 space-y-4">
+    <form onSubmit={onSubmit} className="w-full md:max-w-xs py-4 space-y-4">
       <input
         type="number"
         id="count"
@@ -67,7 +72,8 @@ export default function Heart() {
         Submit
       </button>
       <div
-        className={`flex justify-center whitespace-pre font-['emoji'] text-xs`}
+        style={{ fontFamily: "'emoji', 'Apple Color Emoji'" }}
+        className="text-black dark:text-white flex justify-center whitespace-pre text-xs"
       >
         {heart}
       </div>
