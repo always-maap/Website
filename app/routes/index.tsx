@@ -32,8 +32,9 @@ function Me() {
         <h2 className="text-gray-700 dark:text-gray-200 mb-4">
           Front-end lead at{" "}
           <a
-            href="https://www.zoomit.ir"
             target="_blank"
+            rel="noreferrer"
+            href="https://www.zoomit.ir"
             className="font-semibold"
           >
             Zoomit
@@ -67,7 +68,7 @@ function Features(props: FeaturesProps) {
       <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
         Featured Blogs
       </h3>
-      <div className="flex gap-6 flex-col md:flex-row">
+      <div className="flex gap-6 flex-col md:flex-row w-full">
         {props.features.map((feature) => (
           <FeatureCard
             key={feature.title}

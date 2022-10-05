@@ -1,15 +1,7 @@
 {
   "blog": [
     {
-      "title": "How I Built My Blog using Fresh",
-      "link": "/blog/how-i-built-my-blog"
-    },
-    {
-      "title": "How I Built My Blog using Fresh",
-      "link": "/blog/how-i-built-my-blog"
-    },
-    {
-      "title": "How I Built My Blog using Fresh",
+      "title": "How I Built My Blog using Remix",
       "link": "/blog/how-i-built-my-blog"
     }
   ]
