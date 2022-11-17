@@ -8,6 +8,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import styles from "./styles/app.css";
+import { Analytics } from "@vercel/analytics/react";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -44,6 +45,7 @@ export default function App() {
         <main className="flex flex-col justify-center px-8 dark:bg-gray-900">
           <Outlet />
         </main>
+        <Analytics />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
