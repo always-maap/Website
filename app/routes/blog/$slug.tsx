@@ -12,7 +12,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
   return json(
     { content: fileContent.code },
-    { headers: { "Cache-Control": "max-age=3600" } }
+    { headers: { "Cache-Control": "public, max-age=3600" } }
   );
 };
 

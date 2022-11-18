@@ -18,7 +18,7 @@ export const loader: LoaderFunction = async () => {
 
   return json(
     { recentBlogs },
-    { headers: { "Cache-Control": "max-age=3600" } }
+    { headers: { "Cache-Control": "public, max-age=3600" } }
   );
 };
 
