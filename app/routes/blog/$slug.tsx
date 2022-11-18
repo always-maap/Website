@@ -10,7 +10,10 @@ export const loader: LoaderFunction = async ({ params }) => {
 
   const fileContent = await getMdxPage("blogs", slug);
 
-  return json({ content: fileContent.code });
+  return json(
+    { content: fileContent.code },
+    { headers: { "Cache-Control": "max-age=3600" } }
+  );
 };
 
 export function ErrorBoundary({ error }: { error: Error }) {

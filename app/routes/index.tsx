@@ -1,3 +1,4 @@
+import { json } from "@remix-run/node";
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Container from "../components/Container";
@@ -15,11 +16,14 @@ export function meta() {
 export const loader: LoaderFunction = async () => {
   const recentBlogs = await getRecentBlogs();
 
-  return recentBlogs;
+  return json(
+    { recentBlogs },
+    { headers: { "Cache-Control": "max-age=3600" } }
+  );
 };
 
 export default function Home() {
-  const recentBlogs = useLoaderData() as RecentBlogType[];
+  const { recentBlogs } = useLoaderData();
 
   return (
     <Container>
