@@ -1,6 +1,5 @@
-import { readdir, readFile } from "fs/promises";
-import path from "path";
 import matter from "gray-matter";
+import { downloadDirectory } from "./github.server";
 
 export interface BlogMatter {
   title: string;
@@ -15,24 +14,15 @@ export interface BlogMatter {
   date: string;
 }
 
-const BLOGS_DIR = path.resolve(__dirname, "../content/blogs");
-
 async function getRecentBlogs() {
-  const blogs = await readdir(BLOGS_DIR);
+  const blogDir = await downloadDirectory("content/blogs");
 
-  const allBlogs = await Promise.all(
-    blogs.map(async (blog) => {
-      const x = await readFile(path.join(BLOGS_DIR, blog, "index.mdx"), "utf8");
-      const { data } = matter(x);
-      return data as BlogMatter;
-    })
-  );
-
-  return allBlogs.slice(0, 19).map((blog) => ({
-    title: blog.title,
-    berief: blog.berief,
-    slug: blog.slug,
-  }));
+  return blogDir.slice(0, 19).map((blog) => {
+    const { content } = blog;
+    const { data } = matter(content);
+    const { title, berief, slug } = data;
+    return { title, berief, slug };
+  });
 }
 
 export { getRecentBlogs };
