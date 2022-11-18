@@ -1,28 +1,34 @@
-import { readFile } from "fs/promises";
 import { bundleMDX } from "mdx-bundler";
-import path from "path";
 
-const BLOGS = path.resolve(__dirname, "../content/blogs");
+type GitHubFile = {
+  path: string;
+  content: string;
+};
 
-export async function compileMdx<
-  FrontmatterType extends Record<string, unknown>
->(slug: string) {
-  const mdxSource = await readFile(`${BLOGS}/${slug}/index.mdx`, "utf-8");
+async function compileMdx<FrontmatterType extends Record<string, unknown>>(
+  slug: string,
+  githubFiles: Array<GitHubFile>
+) {
+  const indexRegex = new RegExp(`${slug}\\/index.mdx?$`);
+  const indexFile = githubFiles.find(({ path }) => indexRegex.test(path));
+  if (!indexFile) return null;
+
+  const rootDir = indexFile.path.replace(/index.mdx?$/, "");
+  const relativeFiles: Array<GitHubFile> = githubFiles.map(
+    ({ path, content }) => ({
+      path: path.replace(rootDir, "./"),
+      content,
+    })
+  );
+  const files = arrayToObj(relativeFiles, {
+    keyName: "path",
+    valueName: "content",
+  });
 
   try {
     const { frontmatter, code } = await bundleMDX({
-      source: mdxSource,
-      files: {
-        "../../app/components/Footer.tsx": `
-import * as React from 'react'
-
-function Demo() {
-  return <div>Neat demo!</div>
-}
-
-export default Demo
-    `,
-      },
+      source: indexFile.content,
+      files,
     });
 
     return {
@@ -34,3 +40,21 @@ export default Demo
     throw error;
   }
 }
+
+function arrayToObj<ItemType extends Record<string, unknown>>(
+  array: Array<ItemType>,
+  { keyName, valueName }: { keyName: keyof ItemType; valueName: keyof ItemType }
+) {
+  const obj: Record<string, ItemType[keyof ItemType]> = {};
+  for (const item of array) {
+    const key = item[keyName];
+    if (typeof key !== "string") {
+      throw new Error(`${String(keyName)} of item must be a string`);
+    }
+    const value = item[valueName];
+    obj[key] = value;
+  }
+  return obj;
+}
+
+export { compileMdx };

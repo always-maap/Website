@@ -1,5 +1,7 @@
 import * as mdxBundler from "mdx-bundler/client";
 import React from "react";
+import { compileMdx } from "./compile-mdx.server";
+import { downloadMdxFileOrDirectory } from "./github.server";
 
 function getMdxComponent(code: string) {
   const Component = mdxBundler.getMDXComponent(code);
@@ -16,4 +18,16 @@ function useMdxComponent(code: string) {
   return React.useMemo(() => getMdxComponent(code), [code]);
 }
 
-export { useMdxComponent };
+async function getMdxPage(contentDir: string, slug: string) {
+  const pageFiles = await downloadMdxFileOrDirectory(`${contentDir}/${slug}`);
+
+  const compiledPage = await compileMdx(slug, pageFiles.files);
+
+  if (!compiledPage) {
+    throw new Error(`Page not found: ${slug}`);
+  }
+
+  return compiledPage;
+}
+
+export { useMdxComponent, getMdxPage };

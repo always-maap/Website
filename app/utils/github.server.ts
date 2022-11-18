@@ -1,5 +1,6 @@
 import { Octokit as createOctokit } from "@octokit/rest";
 import { throttling } from "@octokit/plugin-throttling";
+import nodePath from "path";
 
 const Octokit = createOctokit.plugin(throttling);
 
@@ -9,10 +10,10 @@ type ThrottleOptions = {
   request: { retryCount: number };
 };
 
-interface GitHubFile {
+type GitHubFile = {
   path: string;
   content: string;
-}
+};
 
 const octokit = new Octokit({
   auth: process.env.BOT_GITHUB_TOKEN,
@@ -31,6 +32,51 @@ const octokit = new Octokit({
     },
   },
 });
+
+async function downloadFirstMdxFile(
+  list: Array<{ name: string; type: string; path: string; sha: string }>
+) {
+  const filesOnly = list.filter(({ type }) => type === "file");
+  for (const extension of [".mdx", ".md"]) {
+    const file = filesOnly.find(({ name }) => name.endsWith(extension));
+    if (file) return downloadFileBySha(file.sha);
+  }
+  return null;
+}
+
+async function downloadMdxFileOrDirectory(
+  relativeMdxFileOrDirectory: string
+): Promise<{ entry: string; files: Array<GitHubFile> }> {
+  const mdxFileOrDirectory = `content/${relativeMdxFileOrDirectory}`;
+
+  const parentDir = nodePath.dirname(mdxFileOrDirectory);
+  const dirList = await downloadDirList(parentDir);
+
+  const basename = nodePath.basename(mdxFileOrDirectory);
+  const mdxFileWithoutExt = nodePath.parse(mdxFileOrDirectory).name;
+  const potentials = dirList.filter(({ name }) => name.startsWith(basename));
+  const exactMatch = potentials.find(
+    ({ name }) => nodePath.parse(name).name === mdxFileWithoutExt
+  );
+  const dirPotential = potentials.find(({ type }) => type === "dir");
+
+  const content = await downloadFirstMdxFile(
+    exactMatch ? [exactMatch] : potentials
+  );
+  let files: Array<GitHubFile> = [];
+  let entry = mdxFileOrDirectory;
+  if (content) {
+    entry = mdxFileOrDirectory.endsWith(".mdx")
+      ? mdxFileOrDirectory
+      : `${mdxFileOrDirectory}.mdx`;
+    files = [{ path: nodePath.join(mdxFileOrDirectory, "index.mdx"), content }];
+  } else if (dirPotential) {
+    entry = dirPotential.path;
+    files = await downloadDirectory(mdxFileOrDirectory);
+  }
+
+  return { entry, files };
+}
 
 async function downloadDirectory(dir: string): Promise<Array<GitHubFile>> {
   const dirList = await downloadDirList(dir);
@@ -106,4 +152,9 @@ async function downloadDirList(path: string) {
   return data;
 }
 
-export { downloadDirList, downloadFile, downloadDirectory };
+export {
+  downloadDirList,
+  downloadFile,
+  downloadDirectory,
+  downloadMdxFileOrDirectory,
+};

@@ -3,26 +3,12 @@ import Navigation from "../../components/Navigation";
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { compileMdx } from "../../utils/compile-mdx.server";
-import { useMdxComponent } from "../../utils/mdx";
-
-interface Data {
-  content: FrontMatter["content"];
-  page: FrontMatter["data"];
-}
-
-interface FrontMatter {
-  content: string;
-  data: {
-    title: string;
-    desc: string;
-  };
-}
+import { getMdxPage, useMdxComponent } from "../../utils/mdx";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const slug = params.slug as string;
 
-  const fileContent = await compileMdx(slug);
+  const fileContent = await getMdxPage("blogs", slug);
 
   return json({ content: fileContent.code });
 };
