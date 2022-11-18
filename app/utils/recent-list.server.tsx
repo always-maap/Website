@@ -15,7 +15,7 @@ export interface BlogMatter {
   date: string;
 }
 
-const BLOGS_DIR = path.resolve(process.cwd(), "./content/blogs");
+const BLOGS_DIR = path.resolve(__dirname, "../content/blogs");
 
 async function getRecentBlogs() {
   const blogs = await readdir(BLOGS_DIR);

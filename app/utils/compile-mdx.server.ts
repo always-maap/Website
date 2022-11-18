@@ -2,7 +2,7 @@ import { readFile } from "fs/promises";
 import { bundleMDX } from "mdx-bundler";
 import path from "path";
 
-const BLOGS = path.resolve(process.cwd(), "./content/blogs");
+const BLOGS = path.resolve(__dirname, "../content/blogs");
 
 export async function compileMdx<
   FrontmatterType extends Record<string, unknown>
