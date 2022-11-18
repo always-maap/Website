@@ -1,23 +1,31 @@
+import type { LoaderFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import Container from "../components/Container";
 import Navigation from "../components/Navigation";
-import features from "../../content/features.json";
+import { getRecentBlogs } from "../utils/recent-list.server";
+import type { RecentBlogType } from "../utils/recent-list.server";
 
-const TITLE = "Mohammad ali Ali panah";
-const DESCRIPTION = "Mohammad ali Ali panah - Software engineer";
-
-export function Meta() {
+export function meta() {
   return {
-    title: TITLE,
-    description: DESCRIPTION,
+    title: "Mohammad ali Ali panah",
+    description: "Mohammad ali Ali panah - Software engineer",
   };
 }
 
+export const loader: LoaderFunction = async () => {
+  const recentBlogs = await getRecentBlogs();
+
+  return recentBlogs;
+};
+
 export default function Home() {
+  const recentBlogs = useLoaderData() as RecentBlogType[];
+
   return (
     <Container>
       <Navigation active="/" />
       <Me />
-      <RecentlyPublished articles={features.blog} />
+      <RecentBlogs blogs={recentBlogs} />
     </Container>
   );
 }
@@ -49,23 +57,23 @@ function Me() {
   );
 }
 
-interface FeaturesProps {
-  articles: Article[];
+interface RecentBlogsProps {
+  blogs: RecentBlogType[];
 }
 
-function RecentlyPublished(props: FeaturesProps) {
+function RecentBlogs(props: RecentBlogsProps) {
   return (
     <>
       <h3 className="font-medium tracking-tight mb-6 text-black dark:text-white uppercase tracking-wide">
         Recently published
       </h3>
       <div>
-        {props.articles.map((article) => (
+        {props.blogs.map((article) => (
           <ArticleCard
             key={article.title}
             title={article.title}
             berief={article.berief}
-            link={article.link}
+            slug={article.slug}
           />
         ))}
       </div>
@@ -73,15 +81,12 @@ function RecentlyPublished(props: FeaturesProps) {
   );
 }
 
-interface Article {
-  title: string;
-  berief: string;
-  link: string;
-}
-
-function ArticleCard(props: Article) {
+function ArticleCard(props: RecentBlogType) {
   return (
-    <a href={props.link} className="[&:not(:first-of-type)]:mt-12 block">
+    <a
+      href={`/blog/${props.slug}`}
+      className="[&:not(:first-of-type)]:mt-12 block"
+    >
       <article className="dark:bg-gray-900 ">
         <h4 className="text-xl font-semibold w-full text-gray-900 dark:text-gray-100 tracking-tight">
           {props.title}

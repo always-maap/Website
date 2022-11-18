@@ -38,7 +38,6 @@ export default function App() {
       <head>
         <Meta />
         <Links />
-
         <script dangerouslySetInnerHTML={{ __html: initialTheme }} />
       </head>
       <body>

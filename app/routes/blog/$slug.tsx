@@ -2,8 +2,9 @@ import Container from "../../components/Container";
 import Navigation from "../../components/Navigation";
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { blogExists, readBlogData } from "utils/db.server";
 import { useLoaderData } from "@remix-run/react";
+import { compileMdx } from "../../utils/compile-mdx.server";
+import { useMdxComponent } from "../../utils/mdx";
 
 interface Data {
   content: FrontMatter["content"];
@@ -21,31 +22,33 @@ interface FrontMatter {
 export const loader: LoaderFunction = async ({ params }) => {
   const slug = params.slug as string;
 
-  const isFound = await blogExists(slug);
+  const fileContent = await compileMdx(slug);
 
-  if (!isFound) {
-    return new Response("404 page not found", { status: 404 });
-  }
-
-  const fileContent = await readBlogData(slug);
-  console.log(fileContent);
-
-  return json({ content: fileContent });
+  return json({ content: fileContent.code });
 };
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  return (
+    <div>
+      <h1>Error</h1>
+      <p>{error.message}</p>
+      <p>The stack trace is:</p>
+      <pre>{error.stack}</pre>
+    </div>
+  );
+}
 
 export default function Blog() {
   const { content } = useLoaderData();
 
-  console.log(content);
+  const Component = useMdxComponent(content);
 
   return (
     <Container>
       <Navigation active="/blog" />
-      dasda
-      <div
-        className="prose dark:prose-invert prose-blue"
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
+      <article className="prose">
+        <Component />
+      </article>
     </Container>
   );
 }
