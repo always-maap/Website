@@ -16,7 +16,7 @@ type GitHubFile = {
 };
 
 const octokit = new Octokit({
-  auth: process.env.BOT_GITHUB_TOKEN,
+  auth: process.env.GITHUB_TOKEN,
   throttle: {
     onRateLimit: (retryAfter: number, options: ThrottleOptions) => {
       console.warn(
