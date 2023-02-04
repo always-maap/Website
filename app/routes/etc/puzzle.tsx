@@ -7,7 +7,7 @@ const chars = ["چجحخهعغفقثصض", "گکمنتالبیسش", "وپدذر
 function Button(props: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
-      className="no-tap-highlight text-lg basis-8 flex-1 flex justify-center items-center rounded-md h-12 hover:opacity-80 touch-none shadow active:shadow-none active:translate-y-px bg-slate-100 dark:bg-slate-300 font-medium"
+      className="no-tap-highlight text-lg basis-8 flex-1 flex justify-center items-center rounded-md h-12 hover:opacity-80 touch-none shadow active:shadow-none active:translate-y-px bg-slate-100 font-medium"
       {...props}
     >
       {props.children}
@@ -75,7 +75,7 @@ export default function Puzzle() {
 
   return (
     <main className="container mx-auto max-w-md flex-grow px-4 sm:px-0 flex flex-col h-full">
-      <div className="flex-grow flex flex-col relative gap-4 py-4" dir="rtl">
+      <div className="flex-grow flex flex-col relative gap-4 py-10" dir="rtl">
         <div className="grid gap-2 relative text-3xl sm:text-4xl font-semibold mb-8">
           {guesses.map((guess, i) => (
             <div key={i} className="grid grid-cols-6 gap-2 relative w-full">
@@ -84,8 +84,8 @@ export default function Puzzle() {
                   key={`${i}-${j}`}
                   className={cn(
                     isCorrectChar(i, j)
-                      ? "bg-green-300 border-green-400 dark:border-green-300 dark:bg-green-500"
-                      : "bg-slate-300 border-slate-400 dark:border-slate-300 dark:bg-slate-500",
+                      ? "bg-green-300 border-green-400"
+                      : "bg-slate-300 border-slate-400",
                     "aspect-square flex items-center justify-center overflow-hidden rounded-[28%] border-2"
                   )}
                 >
@@ -96,7 +96,7 @@ export default function Puzzle() {
           ))}
         </div>
       </div>
-      <div className="mt-auto sticky bottom-16 shadow-md flex flex-col gap-1 text-gray-800 select-none bg-slate-300 dark:bg-slate-600 p-1 rounded-lg">
+      <div className="mt-auto sticky bottom-16 shadow-md flex flex-col gap-1 text-gray-800 select-none bg-slate-300 p-1 rounded-lg">
         <div className="flex gap-1 justify-center">
           {chars[0].split("").map((ch) => (
             <Button key={ch} onClick={() => onSelectChar(ch)}>
