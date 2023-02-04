@@ -66,6 +66,7 @@ interface RecentBlogsProps {
 }
 
 function RecentBlogs(props: RecentBlogsProps) {
+  console.log(props.blogs);
   return (
     <>
       <h3 className="font-medium tracking-tight mb-6 text-black dark:text-white uppercase tracking-wide">

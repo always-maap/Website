@@ -41,9 +41,7 @@ export default function App() {
         <script dangerouslySetInnerHTML={{ __html: initialTheme }} />
       </head>
       <body>
-        <main className="flex flex-col justify-center px-8 dark:bg-gray-900">
-          <Outlet />
-        </main>
+        <Outlet />
         <Analytics />
         <ScrollRestoration />
         <Scripts />
