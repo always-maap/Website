@@ -12,17 +12,17 @@ const navItems = {
     y: 0,
     w: "64px",
   },
-  "/about": {
-    name: "about",
-    x: 64,
-    y: 35,
-    w: "65px",
-  },
   "/blog": {
     name: "blog",
+    x: 64,
+    y: 35,
+    w: "56px",
+  },
+  "/about": {
+    name: "about",
     x: 127,
     y: 69,
-    w: "56px",
+    w: "65px",
   },
 };
 

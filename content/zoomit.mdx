@@ -1,0 +1,168 @@
+---
+title: "Making Iran's biggest tech media"
+publishedAt: "2023-02-11"
+summary: "The story of building a large scale"
+---
+
+[Zoomit](https://zoomit.ir/) (the parent company of [Zoomit](https://zoomit.ir), [Zoomg](https://zoomg.ir/),
+[Kojaro](https://kojaro.ir/), [Pedal](https://pedal.ir/)) is Iran's biggest tech media group with over 5 Billion views and 10M monthly visits.
+Zoomit has more than Million follower in social medias(Instagram, Telegram, Twitter) and large number of users and audience.
+We decided to rewrite everything for all products to have same
+
+<Image
+  alt={"zoomit landing"}
+  src={"/images/placeholder.jpg"}
+  height={1280}
+  width={1200}
+/>
+
+<Callout emoji="💡">
+  These are my personal troughs and experiences. I'm not talking on behalf of
+  Zoomit and our team
+</Callout>
+
+## Complexity is the heart of software
+
+WYSIHTWYT(What you see is harder than what you think. fake acronym). At the surface level we are a CMS but there are a lot to it.
+500+ screen is no joke. It's massive project and needed solid building blocks to ease the development and maintenance.
+Let's take a look at some of our challenges and how we solve them.
+
+### Everything is dynamic
+
+Let's talk about the business a bit. Zoomit is basically a CMS + site generator.
+Admin can chose different modules in different positions of different pages.
+Each modules have couple of templates
+
+<Image
+  alt={"the team"}
+  src={"/images/placeholder.jpg"}
+  height={1280}
+  width={960}
+/>
+
+Modules are data mapping from different subdomains and chips are the filters. Think of this example.
+
+<Image
+  alt={"the team"}
+  src={"/images/placeholder.jpg"}
+  height={1280}
+  width={960}
+/>
+
+Take a look at this screen only. It's the templates of related-article block
+
+```jsx
+// block types
+type RelatedArticleType = {
+  data: {
+    id: string,
+    title: string,
+    lead: string,
+    author: AuthorType,
+    coverImage: CoverImageType,
+    mainCategoryId: string,
+    readingTime: number,
+    slug: string,
+    publishedDate: string,
+    link: LinkType,
+    ...
+  },
+  template: "id-1" | "id-2" | "id-3" | ...,
+  ...
+};
+
+// renderer
+switch(block.template) {
+    case "id-1":
+        const RelatedArticleID1  = dynamic(() => import('./path'));
+        return <RelatedArticleID1 {...data} />
+    case "id-2":
+        const RelatedArticleID2  = dynamic(() => import('./path'));
+        return <RelatedArticleID2 {...data} />
+}
+```
+
+For a single Block, there is 10+ possible designs. We have 20+ block and 10+ modules. do the math yourself.
+
+Writing great end-to-end type safe(from editorial to website) renderer with dynamic loading is the key to succeed this scenario.
+
+### Editorial aka Admin panel
+
+With over 50 writer and chief editor. Editorial was
+
+### Block Editor and migration
+
+Ok
+
+<Image
+  alt={"the team"}
+  src={"/images/placeholder.jpg"}
+  height={1280}
+  width={960}
+/>
+
+### SEO and marketing
+
+It's tricky. So many stuff to consider. What the hell is canonical. Seo schema!? yeah yeah GA inside GTM got it.
+Important to
+
+We eventually build a library to map different types of seo schema. Maybe publish it in future
+
+Here's a list to check:
+
+- **title** and **description**
+- **[robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro)**(fun fact we have humans.txt too. check out ours [zoomit.ir/humans.txt](https://zoomit.ir/humans.txt))
+- **Site Maps** look for ours
+- **SEO Schema**
+- **Canonical**
+- **NO BROKEN LINK**
+-
+
+## The stack
+
+TypeScript, Nx, React, Next.js, Styled-Components, TanStack Query(can't believe he made us do that),
+zustand, Storybook, Cypress, Jest(I hate you), Framer Motion, [React Aria](https://react-spectrum.adobe.com/react-aria/),
+[dnd-kit](https://dndkit.com/), lexical, dayjs, immer, ...
+
+Ok probably many familiar names. Let's forget the obvious ones(yeah I need to defend TypeScript in 2023)
+and talk about controversial/cool kids.
+
+### Nx
+
+Nx is fantastic. I'm recommending Nx for multiple years now and adopting it really pays off. Nx is simply the savior for project maintainers.
+JavaScript is not stable. tools coming and going very fast(yes Jest time to go. I can't bother configuring you anymore).
+
+### Styled-Components
+
+Yeah I know. I'm css-in-js person and I have to defend it. I like the clean looking jsx and flexible and dynamic
+
+### zustand and immer
+
+State management was hard and tedious and zustand created. Ok zustand isn't a new thing anymore(and I'm sad. no more gate keeping).
+I think 99% of projects will be fine with zustand and react-query. give immer a try. It makes mutating a breeze.
+
+### Headless ui
+
+You should almost always build on top of headless ui.
+It was one of my bad calls to write out own primitives and we end up switching to React Aria.
+React Aria is nice but the documentation isn't. Reading through their source code, I learned a lot about focus management.
+I prefer the [Radix's](https://www.radix-ui.com/) model. Radix helps me style and animate elements better and a good fit with css-in-js.
+
+```jsx
+// not so great DX of React Aria
+const { someProps, otherProps, moreProps } = useHook();
+
+return (
+  <button {...someProps} {...otherProps} {...moreProps}>
+    click me
+  </button>
+);
+```
+
+<Image
+  alt={"the team"}
+  src={"/images/placeholder.jpg"}
+  height={1280}
+  width={960}
+/>
+From left to right: Armin Shokati, Ehsan JafariMoghadam, Me, Reza Sobhgol.
