@@ -2,15 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-export function links() {
-  return [
-    {
-      rel: "stylesheet",
-      href: "/fontiran.css",
-    },
-  ];
-}
-
 export default function Yeganeh() {
   const [t, setT] = useState("یگانه");
 
