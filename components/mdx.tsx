@@ -22,7 +22,12 @@ const CustomLink = (props) => {
 };
 
 function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+  return (
+    <figure>
+      <Image alt={props.alt} className="rounded-lg" {...props} />
+      <figcaption>{props.caption}</figcaption>
+    </figure>
+  );
 }
 
 function Callout(props) {

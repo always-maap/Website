@@ -1,30 +1,43 @@
 ---
-title: "Making Iran's biggest tech media"
+title: "Making Iran's biggest tech media website"
 publishedAt: "2023-02-11"
 summary: "The story of building a large scale"
 ---
 
 [Zoomit](https://zoomit.ir/) (the parent company of [Zoomit](https://zoomit.ir), [Zoomg](https://zoomg.ir/),
-[Kojaro](https://kojaro.ir/), [Pedal](https://pedal.ir/)) is Iran's biggest tech media group with over 5 Billion views and 10M monthly visits.
-Zoomit has more than Million follower in social medias(Instagram, Telegram, Twitter) and large number of users and audience.
-We decided to rewrite everything for all products to have same
+[Kojaro](https://kojaro.ir/), and [Pedal](https://pedal.ir/)) is Iran's biggest tech media group with over and 10 Million monthly visits
+and Millions of followers on social media(Instagram, Telegram, Twitter).
+We decided to rewrite the organization to achieve a unified design and ease the future development and maintainability.
 
 <Image
   alt={"zoomit landing"}
-  src={"/images/placeholder.jpg"}
-  height={1280}
-  width={1200}
+  src={"/images/zoomit/landing.jpg"}
+  width={1717}
+  height={2228}
+/>
+
+Zoomit has been around for a long time. I can remember being in elementary school and reading articles.
+Zoomit has always been a community-driven website. I wanted to help and tribute to one of my favorite websites.
+
+<Image
+  alt={"zoomit web archive"}
+  src={"/images/zoomit/history.jpg"}
+  width={3325}
+  height={548}
+  caption={
+    "from top-left to bottom-right. zoomit landing in Nov 13 2010, Jan 12 2017, Jan 20 2020 and current version in Jan 30 2023."
+  }
 />
 
 <Callout emoji="💡">
-  These are my personal troughs and experiences. I'm not talking on behalf of
-  Zoomit and our team
+  These are my troughs and experiences. I'm not talking on behalf of Zoomit or
+  the team. Also, this article only covers the client side of things.
 </Callout>
 
 ## Complexity is the heart of software
 
-WYSIHTWYT(What you see is harder than what you think. fake acronym). At the surface level we are a CMS but there are a lot to it.
-500+ screen is no joke. It's massive project and needed solid building blocks to ease the development and maintenance.
+WYSIHTWYT(What you see is harder than what you think. fake acronym of course). At the surface level, we are a CMS but there is a lot to it.
+500+ screens are no joke. It's a massive project and needed solid building blocks to ease the development and maintenance.
 Let's take a look at some of our challenges and how we solve them.
 
 ### Everything is dynamic
@@ -40,7 +53,18 @@ Each modules have couple of templates
   width={960}
 />
 
-Modules are data mapping from different subdomains and chips are the filters. Think of this example.
+Modules are the data mapping from different subdomains and chips are the filters of it. Consider these subdomains:
+article, comment, authors. each of them has it owns modules which determine the position and number of item.
+Chips are the filter. for example article from a week ago sort by number of comments in mobile category.
+
+<Image
+  alt={"the team"}
+  src={"/images/placeholder.jpg"}
+  height={1280}
+  width={960}
+/>
+
+As you can see article module
 
 <Image
   alt={"the team"}
@@ -86,9 +110,11 @@ For a single Block, there is 10+ possible designs. We have 20+ block and 10+ mod
 
 Writing great end-to-end type safe(from editorial to website) renderer with dynamic loading is the key to succeed this scenario.
 
-### Editorial aka Admin panel
+### Editorial AKA admin panel
 
-With over 50 writer and chief editor. Editorial was
+With over 50 writer and chief editor. Editorial it self contain a lot pages including modules and chips, articles, comments
+advertisement, media and user management. It's takes multiple posts to talk about each of them. For now let's only talk about
+article and it's editor
 
 ### Block Editor and migration
 
@@ -162,7 +188,9 @@ return (
 <Image
   alt={"the team"}
   src={"/images/placeholder.jpg"}
-  height={1280}
   width={960}
+  height={1280}
+  caption={
+    "From left to right: Armin Shokati, Ehsan JafariMoghadam, Me, Reza Sobhgol"
+  }
 />
-From left to right: Armin Shokati, Ehsan JafariMoghadam, Me, Reza Sobhgol.
