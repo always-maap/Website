@@ -18,19 +18,24 @@ const navItems = {
     y: 35,
     w: "56px",
   },
+  "/short": {
+    name: "short",
+    x: 64 + 56,
+    y: 2 * 35,
+    w: "68px",
+  },
   "/about": {
     name: "about",
-    x: 127,
-    y: 69,
+    x: 64 + 56 + 68,
+    y: 3 * 35,
     w: "65px",
   },
 };
 
 export default function Navbar() {
   let pathname = usePathname();
-  if (pathname.includes("/blog/")) {
-    pathname = "/blog";
-  }
+  pathname = pathname.includes("/blog/") ? "/blog" : pathname;
+  pathname = pathname.includes("/short/") ? "/short" : pathname;
 
   return (
     <aside className="md:w-[150px] md:flex-shrink-0 -mx-4 md:mx-0 md:px-0 font-serif">
