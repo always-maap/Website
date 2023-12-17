@@ -12,11 +12,7 @@ export default function Yeganeh() {
   }, []);
 
   return (
-    <div
-      dir="rtl"
-      className="text-3xl break-all"
-      style={{ fontFamily: "Yekan Bakh FaNum" }}
-    >
+    <div dir="rtl" className="text-3xl break-all">
       {t}
     </div>
   );
