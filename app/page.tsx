@@ -27,9 +27,9 @@ export default function Page() {
           <Badge href="https://www.digikala.com">
             <svg
               width="13"
-              height="11"
+              height="13"
               role="img"
-              aria-label="Vercel logo"
+              aria-label="Digikala logo"
               className="mr-1 inline-flex"
             >
               <use href="/sprite.svg#digikala" />
@@ -44,7 +44,7 @@ export default function Page() {
               width="13"
               height="13"
               role="img"
-              aria-label="Vercel logo"
+              aria-label="Noshirvani logo"
               className="mr-1 inline-flex"
             >
               <use href="/sprite.svg#noshirvani" />
