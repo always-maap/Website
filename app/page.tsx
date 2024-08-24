@@ -1,3 +1,12 @@
+import Image from 'next/image';
+import digikala from 'public/images/home/digikala.jpg';
+import peanut from 'public/images/home/peanut.webp';
+import university from 'public/images/home/university.jpg';
+import coco from 'public/images/home/coco.jpg';
+import mother from 'public/images/home/mother.jpg';
+import spirited_away from 'public/images/home/spirited_away.jpg';
+import { PreloadResources } from 'app/preload';
+
 function Badge(props) {
   return (
     <a
@@ -8,9 +17,77 @@ function Badge(props) {
   );
 }
 
+function Gallery() {
+  return (
+    <div className="grid grid-cols-2 grid-rows-4 sm:grid-rows-3 sm:grid-cols-3 gap-4 my-8">
+      <div className="relative h-40">
+        <Image
+          alt="Digikala entrance, the company I currently work at"
+          src={digikala}
+          fill
+          sizes="(max-width: 768px) 213px, 33vw"
+          priority
+          className="rounded-lg object-cover"
+        />
+      </div>
+      <div className="relative sm:row-span-2 row-span-1">
+        <Image
+          alt="Me and Peanut, my friend's lovely dog"
+          src={peanut}
+          fill
+          sizes="(max-width: 768px) 213px, 33vw"
+          priority
+          className="rounded-lg object-cover object-top sm:object-center"
+        />
+      </div>
+      <div className="relative">
+        <Image
+          alt="Me and my friends at the university graduation ceremony"
+          src={university}
+          fill
+          sizes="(max-width: 768px) 213px, 33vw"
+          priority
+          className="rounded-lg object-cover"
+        />
+      </div>
+      <div className="relative row-span-2">
+        <Image
+          alt="My cat Coco, the most adorable creature on the planet"
+          src={coco}
+          fill
+          sizes="(max-width: 768px) 213px, 33vw"
+          priority
+          className="rounded-lg object-cover sm:object-center"
+        />
+      </div>
+      <div className="relative row-span-2">
+        <Image
+          alt="My mother and I at my grandfather's garden"
+          src={mother}
+          fill
+          sizes="(max-width: 768px) 213px, 33vw"
+          priority
+          className="rounded-lg object-cover"
+        />
+      </div>
+      <div className="relative h-40">
+        <Image
+          alt="My favorite anime, Spirited Away by Hayao Miyazaki"
+          src={spirited_away}
+          fill
+          sizes="(max-width: 768px) 213px, 33vw"
+          priority
+          className="rounded-lg object-cover"
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function Page() {
   return (
     <section>
+      <PreloadResources />
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">
         hey, I'm Mohammad ali 👋
       </h1>
@@ -54,6 +131,7 @@ export default function Page() {
         </span>{' '}
         with a bachelor's degree in computer engineering.
       </p>
+      <Gallery />
     </section>
   );
 }
