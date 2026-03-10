@@ -92,8 +92,8 @@ function Gallery() {
       </div>
       <div className="relative sm:row-span-2">
         <Image
-          alt="My stunning girlfriend, Yeganeh"
-          src="/images/home/yeganeh.jpg"
+          alt="My mother and I at my grandfather's garden"
+          src="/images/home/mother.jpg"
           fill
           sizes="(max-width: 768px) 213px, 33vw"
           priority
