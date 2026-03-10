@@ -103,7 +103,7 @@ function Gallery() {
       <div className="relative h-40">
         <Image
           alt="With Kiarash at our graduation ceremony"
-          src="/images/home/kiarash.jpg"
+          src="/images/home/kiarash-graduation.jpg"
           fill
           sizes="(max-width: 768px) 213px, 33vw"
           priority
