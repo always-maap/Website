@@ -1,14 +1,14 @@
-const nextConfig = {
-  experimental: {
-    ppr: true,
-  },
+import type { NextConfig } from 'next';
+import createMDX from '@next/mdx';
+
+const nextConfig: NextConfig = {
+  pageExtensions: ['mdx', 'ts', 'tsx'],
   logging: {
     fetches: {
       fullUrl: true,
     },
   },
-  transpilePackages: ['next-mdx-remote'],
-  headers() {
+  async headers() {
     return [
       {
         source: '/(.*)',
@@ -60,4 +60,6 @@ const securityHeaders = [
   },
 ];
 
-module.exports = nextConfig;
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);

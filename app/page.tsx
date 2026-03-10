@@ -1,11 +1,4 @@
 import Image from 'next/image';
-import digikala from 'public/images/home/digikala.jpg';
-import peanut from 'public/images/home/peanut.webp';
-import university from 'public/images/home/university.jpg';
-import coco from 'public/images/home/coco.jpg';
-import mother from 'public/images/home/mother.jpg';
-import spirited_away from 'public/images/home/spirited_away.jpg';
-import { PreloadResources } from 'app/preload';
 
 function Badge(props) {
   return (
@@ -60,17 +53,17 @@ function Gallery() {
       <div className="relative h-40">
         <Image
           alt="Digikala entrance, the company I currently work at"
-          src={digikala}
+          src="/images/home/digikala.jpg"
           fill
           sizes="(max-width: 768px) 213px, 33vw"
           priority
           className="rounded-lg object-cover"
         />
       </div>
-      <div className="relative sm:row-span-2 row-span-1">
+      <div className="relative row-span-2">
         <Image
-          alt="Me and Peanut, my friend's lovely dog"
-          src={peanut}
+          alt="Kiarash's lovely dog, Peanut"
+          src="/images/home/peanut.webp"
           fill
           sizes="(max-width: 768px) 213px, 33vw"
           priority
@@ -79,8 +72,8 @@ function Gallery() {
       </div>
       <div className="relative">
         <Image
-          alt="Me and my friends at the university graduation ceremony"
-          src={university}
+          alt="Back when things were good"
+          src="/images/home/kiddo.jpg"
           fill
           sizes="(max-width: 768px) 213px, 33vw"
           priority
@@ -90,17 +83,17 @@ function Gallery() {
       <div className="relative row-span-2">
         <Image
           alt="My cat Coco, the most adorable creature on the planet"
-          src={coco}
+          src="/images/home/coco.jpg"
           fill
           sizes="(max-width: 768px) 213px, 33vw"
           priority
-          className="rounded-lg object-cover sm:object-center"
+          className="rounded-lg object-cover object-left sm:object-center"
         />
       </div>
-      <div className="relative row-span-2">
+      <div className="relative sm:row-span-2">
         <Image
-          alt="My mother and I at my grandfather's garden"
-          src={mother}
+          alt="My stunning girlfriend, Yeganeh"
+          src="/images/home/yeganeh.jpg"
           fill
           sizes="(max-width: 768px) 213px, 33vw"
           priority
@@ -109,8 +102,8 @@ function Gallery() {
       </div>
       <div className="relative h-40">
         <Image
-          alt="My favorite anime, Spirited Away by Hayao Miyazaki"
-          src={spirited_away}
+          alt="With Kiarash at our graduation ceremony"
+          src="/images/home/kiarash.jpg"
           fill
           sizes="(max-width: 768px) 213px, 33vw"
           priority
@@ -124,12 +117,11 @@ function Gallery() {
 export default function Page() {
   return (
     <section>
-      <PreloadResources />
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">
-        hey, I'm Mohammad ali 👋
+        hey, I'm Mohammadali 👋
       </h1>
       <p className="prose prose-neutral dark:prose-invert">
-        I'm a senior software engineer, researcher, and oss contributor based in{' '}
+        I'm a software engineer, researcher, and oss contributor based in{' '}
         <span className="not-prose">
           <Badge href="https://en.wikipedia.org/wiki/Tehran">🇮🇷 Tehran</Badge>
         </span>
