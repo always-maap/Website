@@ -97,7 +97,7 @@ function Gallery() {
           fill
           sizes="(max-width: 768px) 213px, 33vw"
           priority
-          className="rounded-lg object-cover"
+          className="rounded-lg object-cover object-top"
         />
       </div>
       <div className="relative h-40">
