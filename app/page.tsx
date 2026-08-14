@@ -120,52 +120,52 @@ export default function Page() {
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">
         hey, I'm Mohammadali 👋
       </h1>
-      <p className="prose prose-neutral dark:prose-invert">
-        I'm a software engineer, researcher, and oss contributor based in{' '}
-        <span className="not-prose">
-          <Badge href="https://en.wikipedia.org/wiki/Tehran">🇮🇷 Tehran</Badge>
-        </span>
-        .
-      </p>
-      <p className="prose prose-neutral dark:prose-invert">
-        I currently work at{' '}
-        <span className="not-prose">
-          <Badge href="https://www.digikala.com">
-            <svg
-              width="13"
-              height="13"
-              role="img"
-              aria-label="Digikala logo"
-              className="mr-1 inline-flex"
-            >
-              <use href="/sprite.svg#digikala" />
-            </svg>
-            Digikala
-          </Badge>
-        </span>
-        . Recently graduated from the{' '}
-        <span className="not-prose">
-          <Badge href="https://nit.ac.ir/en">
-            <svg
-              width="13"
-              height="13"
-              role="img"
-              aria-label="Noshirvani logo"
-              className="mr-1 inline-flex"
-            >
-              <use href="/sprite.svg#noshirvani" />
-            </svg>
-            Noshirvani
-          </Badge>
-        </span>{' '}
-        with a bachelor's degree in computer engineering.
-      </p>
+      <div className="leading-relaxed">
+        <p className="prose prose-neutral dark:prose-invert">
+          I'm a software engineer, researcher, and oss contributor based in{' '}
+          <span className="not-prose">
+            <Badge href="https://en.wikipedia.org/wiki/Tehran">🇮🇷 Tehran</Badge>
+          </span>
+          .
+        </p>
+        <p className="prose prose-neutral dark:prose-invert">
+          I currently work as a Engineering Manager at{' '}
+          <span className="not-prose">
+            <Badge href="https://www.digikala.com">
+              <svg
+                width="13"
+                height="13"
+                role="img"
+                aria-label="Digikala logo"
+                className="mr-1 inline-flex"
+              >
+                <use href="/sprite.svg#digikala" />
+              </svg>
+              Digikala
+            </Badge>
+          </span>
+          . Recently graduated from the{' '}
+          <span className="not-prose">
+            <Badge href="https://nit.ac.ir/en">
+              <svg
+                width="13"
+                height="13"
+                role="img"
+                aria-label="Noshirvani logo"
+                className="mr-1 inline-flex"
+              >
+                <use href="/sprite.svg#kntu" />
+              </svg>
+              Khajeh Nasir Toosi
+            </Badge>
+          </span>{' '}
+          with a master's degree in artificial intelligence.
+        </p>
+      </div>
       <Gallery />
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I write about engineering, travel, and life on my blog. Sometimes very
-          technical, sometimes very personal. It's a way for me to express my
-          thoughts and share my experiences. You can read some of my favorites
+          I write about engineering, travel, and life on my blog. You can read some of my favorites
           below.
         </p>
       </div>
